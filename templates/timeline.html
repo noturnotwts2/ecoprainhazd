@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Últimas Denúncias</title>
+    <style>
+        body {
+            background-color: #E0F4EA;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #62ab8a;
+            border-radius: 10px;
+            padding: 40px;
+            height: 500px;
+            width: 320px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow-y: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title {
+            margin: 22px;
+            font-size: 24px;
+            color: #017161;
+            font-weight: bold;
+        }
+        .menu-icon {
+            color: #419d81;
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            background-color: #017161;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .report {
+            background-color: #037261;
+            margin: 15px 0;
+            border-radius: 12px;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        .report-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #88e4ba;
+        }
+        .report-desc {
+            margin-top: 6px;
+            font-size: 14px;
+        }
+        .status-tag {
+            margin-top: 10px;
+            align-self: flex-start;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pendente {
+            background-color: #eac861;
+            color: #333;
+        }
+        .resolvido {
+            background-color: #51e38c;
+            color: rgb(8, 97, 60);
+        }
+        .add-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            color: #00796B;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="menu-icon">☰</div>
+        </div>
+        <div class="title">ÚLTIMAS DENÚNCIAS</div>
+
+        <div id="denuncias"></div>
+
+        <script>
+        fetch("http://localhost:5000/denuncias")
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById("denuncias");
+            data.forEach(d => {
+            const div = document.createElement("div");
+            div.className = "report";
+            div.innerHTML = `
+            <div class="report-title">${d.titulo}</div>
+            <div class="report-desc">${d.descricao}</div>
+            <div class="status-tag pendente">${d.status}</div>
+            <a href="/detalhe/${d.id}" style="color: #fff; margin-top: 10px; text-decoration: underline;">Ver mais</a>
+        `;
+
+            container.appendChild(div);
+            });
+        });
+        </script>
+
+
+        <div class="report">
+            <div class="report-title">Lixo encontrado na prainha</div>
+            <div class="report-desc">Encontrei sacos de lixo pretos cheios de lixo flutuando na prainha.</div>
+            <div class="status-tag resolvido">Resolvido</div>
+        </div>
+
+        <div class="report">
+            <div class="report-title">Vazamento de esgoto</div>
+            <div class="report-desc">Tem um vazamento persistente no Bairro São Francisco.</div>
+            <div class="status-tag pendente">Pendente</div>
+        </div>
+
+        <a href="/denuncia" class="add-button">+</a>
+
+
+    </div>
+</body>
+</html>
