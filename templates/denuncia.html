@@ -157,12 +157,20 @@ input[type="text"]:disabled {
       .addTo(map)
       .bindPopup('<b>Zé Doca</b><br>Centro da cidade.')
       .openPopup();
+    
+  // ... código do mapa e das funções ...
 
-     function alternarCamposContato() {
-  const anonimo = document.getElementById('anonimoCheckbox').checked;
-  document.getElementById('nome').disabled = anonimo;
-  document.getElementById('contato').disabled = anonimo;
-}
+  function alternarCamposContato() {
+    const anonimo = document.getElementById('anonimoCheckbox').checked;
+    document.getElementById('nome').disabled = anonimo;
+    document.getElementById('contato').disabled = anonimo;
+  }
+
+  // Chama ao carregar a página para refletir o estado inicial
+  window.onload = () => {
+    alternarCamposContato();
+  };
+
 
     function localizarUsuario() {
       if (!navigator.geolocation) {
@@ -208,9 +216,6 @@ input[type="text"]:disabled {
   });
 }
     
-window.onload = () => {
-  alternarCamposContato(); // aplica o estado inicial do checkbox
-};
 
 
   </script>
