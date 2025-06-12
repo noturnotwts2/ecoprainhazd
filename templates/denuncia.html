@@ -196,7 +196,7 @@ input[type="text"]:disabled {
   formData.append("nome", document.getElementById("nome").value);
   formData.append("contato", document.getElementById("contato").value);
 
-  fetch("http://localhost:5000/enviar", {
+  fetch("/enviar", {
     method: "POST",
     body: formData
   })
