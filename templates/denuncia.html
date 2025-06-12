@@ -159,7 +159,7 @@ input[type="text"]:disabled {
       .openPopup();
 
     function alternarCamposContato() {
-    const anonimo = document.getElementById('anonimoCheckbox').checked;
+    formData.append("anonimo", document.getElementById("anonimoCheckbox").checked.toString());
     document.getElementById('nome').disabled = anonimo;
     document.getElementById('contato').disabled = anonimo;
   }
