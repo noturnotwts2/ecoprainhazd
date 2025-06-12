@@ -158,11 +158,12 @@ input[type="text"]:disabled {
       .bindPopup('<b>Zé Doca</b><br>Centro da cidade.')
       .openPopup();
 
-    function alternarCamposContato() {
-    formData.append("anonimo", document.getElementById("anonimoCheckbox").checked.toString());
-    document.getElementById('nome').disabled = anonimo;
-    document.getElementById('contato').disabled = anonimo;
-  }
+     function alternarCamposContato() {
+  const anonimo = document.getElementById('anonimoCheckbox').checked;
+  document.getElementById('nome').disabled = anonimo;
+  document.getElementById('contato').disabled = anonimo;
+}
+
     function localizarUsuario() {
       if (!navigator.geolocation) {
         alert('Geolocalização não é suportada neste navegador.');
@@ -192,7 +193,7 @@ input[type="text"]:disabled {
   const formData = new FormData();
   formData.append("titulo", document.getElementById("titulo").value);
   formData.append("descricao", document.getElementById("descricao").value);
-  formData.append("anonimo", document.getElementById("anonimoCheckbox").checked);
+  formData.append("anonimo", document.getElementById("anonimoCheckbox").checked.toString());
   formData.append("nome", document.getElementById("nome").value);
   formData.append("contato", document.getElementById("contato").value);
 
@@ -203,9 +204,14 @@ input[type="text"]:disabled {
   .then(res => res.json())
   .then(data => {
     alert(data.mensagem);
-    window.location.href = "/"; // ou "/timeline"
+    window.location.href = "/";
   });
 }
+    
+window.onload = () => {
+  alternarCamposContato(); // aplica o estado inicial do checkbox
+};
+
 
   </script>
 </body>
