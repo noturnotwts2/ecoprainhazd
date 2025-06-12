@@ -110,7 +110,7 @@
         <div id="denuncias"></div>
 
         <script>
-        fetch("http://localhost:5000/denuncias")
+        fetch("/denuncias")
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById("denuncias");
