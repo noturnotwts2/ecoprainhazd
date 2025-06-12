@@ -62,6 +62,11 @@ def listar():
 def contato():
     return render_template("contato.html")
 
+@app.route("/detalhe/<int:id>")
+def detalhe(id):
+    # lógica para pegar e exibir a denúncia com id
+    return render_template("detalhe.html", denuncia=denuncia)
+
 
 @app.route('/detalhe/<int:id>')
 def detalhe(id):
