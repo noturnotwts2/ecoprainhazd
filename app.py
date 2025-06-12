@@ -58,6 +58,11 @@ def listar():
             denuncias = []
     return jsonify(denuncias)
 
+@app.route("/contato")
+def contato():
+    return render_template("contato.html")
+
+
 @app.route('/detalhe/<int:id>')
 def detalhe(id):
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
